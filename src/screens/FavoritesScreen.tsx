@@ -13,6 +13,7 @@ import {RootStackParamList} from '../types/types';
 import favoriteStyles from '../styles/favoriteStyles';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faBed} from '@fortawesome/free-solid-svg-icons';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
@@ -45,19 +46,21 @@ const FavoritesScreen = () => {
   );
 
   return (
-    <View style={favoriteStyles.container}>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : favorites.length === 0 ? (
-        <Text>No tienes películas favoritas aún.</Text>
-      ) : (
-        <FlatList
-          data={favorites}
-          keyExtractor={item => item.imdbID}
-          renderItem={renderItem}
-        />
-      )}
-    </View>
+    <SafeAreaView style={favoriteStyles.container}>
+      <View>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : favorites.length === 0 ? (
+          <Text>No tienes películas favoritas aún.</Text>
+        ) : (
+          <FlatList
+            data={favorites}
+            keyExtractor={item => item.imdbID}
+            renderItem={renderItem}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 

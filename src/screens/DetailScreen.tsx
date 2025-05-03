@@ -13,6 +13,7 @@ import {getMovieDetails} from '../api/omdbApi';
 import {addToFavorites, getFavorites} from '../utils/storage';
 import detailsStyles from '../styles/detailsStyles';
 import {DetailsScreenRouteProp} from '../types/types';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const DetailsScreen = () => {
   const route = useRoute<DetailsScreenRouteProp>();
@@ -72,18 +73,20 @@ const DetailsScreen = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={detailsStyles.container}>
-      {movie.Poster !== 'N/A' && (
-        <Image source={{uri: movie.Poster}} style={detailsStyles.poster} />
-      )}
-      <Text style={detailsStyles.title}>{movie.Title}</Text>
-      <Text style={detailsStyles.info}>Año: {movie.Year}</Text>
-      <Text style={detailsStyles.info}>Director: {movie.Director}</Text>
-      <Text style={detailsStyles.info}>Actores: {movie.Actors}</Text>
-      <Text style={detailsStyles.plot}>{movie.Plot}</Text>
+    <SafeAreaView style={detailsStyles.container}>
+      <ScrollView contentContainerStyle={detailsStyles.container}>
+        {movie.Poster !== 'N/A' && (
+          <Image source={{uri: movie.Poster}} style={detailsStyles.poster} />
+        )}
+        <Text style={detailsStyles.title}>{movie.Title}</Text>
+        <Text style={detailsStyles.info}>Año: {movie.Year}</Text>
+        <Text style={detailsStyles.info}>Director: {movie.Director}</Text>
+        <Text style={detailsStyles.info}>Actores: {movie.Actors}</Text>
+        <Text style={detailsStyles.plot}>{movie.Plot}</Text>
 
-      <Button title="Agregar a favoritos" onPress={handleAddToFavorites} />
-    </ScrollView>
+        <Button title="Agregar a favoritos" onPress={handleAddToFavorites} />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

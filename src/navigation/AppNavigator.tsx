@@ -7,21 +7,33 @@ import SearchScreen from '../screens/SearchScreen';
 import DetailScreen from '../screens/DetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import {RootStackParamList, TabParamList} from '../types/types';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faMagnifyingGlass, faStar} from '@fortawesome/free-solid-svg-icons';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator screenOptions={{headerShown: false}}>
     <Tab.Screen
       name="Search"
       component={SearchScreen}
-      options={{title: 'Buscar'}}
+      options={{
+        title: 'Buscar',
+        tabBarIcon: ({color, size}) => (
+          <FontAwesomeIcon icon={faMagnifyingGlass} size={size} color={color} />
+        ),
+      }}
     />
     <Tab.Screen
       name="Favorites"
       component={FavoritesScreen}
-      options={{title: 'Favoritos'}}
+      options={{
+        title: 'Favoritos',
+        tabBarIcon: ({color, size}) => (
+          <FontAwesomeIcon icon={faStar} size={size} color={color} />
+        ),
+      }}
     />
   </Tab.Navigator>
 );

@@ -13,6 +13,7 @@ import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {searchMovies} from '../api/omdbApi';
 import {Movie, RootStackParamList} from '../types/types';
 import searchStyles from '../styles/searchStyles';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const SearchScreen = () => {
   const [query, setQuery] = useState('');
@@ -40,25 +41,27 @@ const SearchScreen = () => {
   );
 
   return (
-    <View style={searchStyles.container}>
-      <TextInput
-        placeholder="Buscar película"
-        value={query}
-        onChangeText={setQuery}
-        style={searchStyles.input}
-      />
-      <Button title="Buscar" onPress={handleSearch} />
-      {loading ? (
-        <ActivityIndicator style={{marginTop: 20}} />
-      ) : (
-        <FlatList
-          data={results}
-          keyExtractor={item => item.imdbID}
-          renderItem={renderItem}
-          contentContainerStyle={{marginTop: 20}}
+    <SafeAreaView style={searchStyles.container}>
+      <View>
+        <TextInput
+          placeholder="Buscar película"
+          value={query}
+          onChangeText={setQuery}
+          style={searchStyles.input}
         />
-      )}
-    </View>
+        <Button title="Buscar" onPress={handleSearch} />
+        {loading ? (
+          <ActivityIndicator style={{marginTop: 20}} />
+        ) : (
+          <FlatList
+            data={results}
+            keyExtractor={item => item.imdbID}
+            renderItem={renderItem}
+            contentContainerStyle={{marginTop: 20}}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 };
 
