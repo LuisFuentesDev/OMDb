@@ -59,6 +59,13 @@ react {
  */
 def enableProguardInReleaseBuilds = false
 
+project.ext.vectoricons = [
+   iconFontNames: ['MaterialCommunityIcons.ttf', 'Ionicons.ttf', 'FontAwesome.ttf', 'FontAwesome5.ttf', 'FontAwesome6.ttf']
+]
+
+apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
+
+
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *

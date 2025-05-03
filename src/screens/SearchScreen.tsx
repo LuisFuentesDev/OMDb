@@ -6,14 +6,13 @@ import {
   Button,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
   ActivityIndicator,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import type {RootStackParamList} from '../navigation/AppNavigator';
 import {searchMovies} from '../api/omdbApi';
-import {Movie} from '../types/types';
+import {Movie, RootStackParamList} from '../types/types';
+import searchStyles from '../styles/searchStyles';
 
 const SearchScreen = () => {
   const [query, setQuery] = useState('');
@@ -33,20 +32,20 @@ const SearchScreen = () => {
 
   const renderItem = ({item}: {item: Movie}) => (
     <TouchableOpacity
-      style={styles.item}
+      style={searchStyles.item}
       onPress={() => navigation.navigate('Details', {imdbID: item.imdbID})}>
-      <Text style={styles.title}>{item.Title}</Text>
+      <Text style={searchStyles.title}>{item.Title}</Text>
       <Text>{item.Year}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={styles.container}>
+    <View style={searchStyles.container}>
       <TextInput
         placeholder="Buscar película"
         value={query}
         onChangeText={setQuery}
-        style={styles.input}
+        style={searchStyles.input}
       />
       <Button title="Buscar" onPress={handleSearch} />
       {loading ? (
@@ -62,30 +61,5 @@ const SearchScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    marginBottom: 12,
-  },
-  item: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderColor: '#ddd',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
 
 export default SearchScreen;

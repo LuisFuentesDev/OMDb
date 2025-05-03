@@ -4,13 +4,15 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  StyleSheet,
   ActivityIndicator,
 } from 'react-native';
 import {getFavorites} from '../utils/storage';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../navigation/AppNavigator';
+import {RootStackParamList} from '../types/types';
+import favoriteStyles from '../styles/favoriteStyles';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faBed} from '@fortawesome/free-solid-svg-icons';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
@@ -34,15 +36,16 @@ const FavoritesScreen = () => {
 
   const renderItem = ({item}: any) => (
     <TouchableOpacity
-      style={styles.item}
+      style={favoriteStyles.item}
       onPress={() => navigation.navigate('Details', {imdbID: item.imdbID})}>
-      <Text style={styles.title}>{item.Title}</Text>
+      <Text style={favoriteStyles.title}>{item.Title}</Text>
+      <FontAwesomeIcon icon={faBed} size={25} color="#63bf04" />
       <Text>{item.Year}</Text>
     </TouchableOpacity>
   );
 
   return (
-    <View style={styles.container}>
+    <View style={favoriteStyles.container}>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : favorites.length === 0 ? (
@@ -57,18 +60,5 @@ const FavoritesScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16, backgroundColor: '#fff'},
-  item: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 export default FavoritesScreen;

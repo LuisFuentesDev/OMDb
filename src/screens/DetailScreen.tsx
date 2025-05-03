@@ -11,7 +11,7 @@ import {
 import {useRoute} from '@react-navigation/native';
 import {getMovieDetails} from '../api/omdbApi';
 import {addToFavorites, getFavorites} from '../utils/storage';
-import detailsStyles from '../styles/detailsStyle';
+import detailsStyles from '../styles/detailsStyles';
 import {DetailsScreenRouteProp} from '../types/types';
 
 const DetailsScreen = () => {
