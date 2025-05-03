@@ -14,6 +14,7 @@ const favoriteStyles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Avenir-Heavy',
   },
 });
 

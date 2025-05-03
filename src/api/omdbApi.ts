@@ -13,7 +13,7 @@ export const searchMovies = async (
     );
     const data = await response.json();
     if (data.Response === 'True') {
-      return data.Search; // NO cortar con .slice
+      return data.Search;
     }
     return [];
   } catch (error) {

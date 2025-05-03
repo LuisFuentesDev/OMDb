@@ -10,6 +10,7 @@ const detailsStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    fontFamily: 'Avenir-Heavy',
   },
   poster: {
     width: 200,
@@ -21,15 +22,18 @@ const detailsStyles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
     textAlign: 'center',
+    fontFamily: 'Avenir-Heavy',
   },
   info: {
     fontSize: 16,
     marginBottom: 4,
+    fontFamily: 'Avenir-Medium',
   },
   plot: {
     fontSize: 16,
     marginTop: 12,
     textAlign: 'justify',
+    fontFamily: 'Avenir-Medium',
   },
 });
 

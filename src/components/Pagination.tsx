@@ -7,13 +7,7 @@ import {
   faAngleRight,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-
-type PaginationProps = {
-  page: number;
-  hasMore: boolean;
-  onLoadMore: () => void;
-  onSearch: () => void;
-};
+import {PaginationProps} from '../types/types';
 
 const Pagination = ({page, hasMore, onLoadMore, onSearch}: PaginationProps) => {
   return (

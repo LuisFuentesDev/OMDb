@@ -11,6 +11,7 @@ const searchStyles = {
     marginBottom: 20,
     paddingLeft: 10,
     borderRadius: 5,
+    fontFamily: 'Avenir-Heavy',
   },
   item: {
     padding: 10,
@@ -19,7 +20,7 @@ const searchStyles = {
   },
   title: {
     fontSize: 18,
-    fontWeight: '500',
+    fontFamily: 'Avenir-Heavy',
   },
   searchButton: {
     backgroundColor: '#007BFF',
@@ -31,13 +32,14 @@ const searchStyles = {
     backgroundColor: 'blue',
     padding: 10,
     flex: 1,
-    alignItems: 'center', // Aquí debe ir un valor válido de FlexAlignType como 'center'
+    alignItems: 'center',
     margin: 10,
   },
   buttonText: {
     color: 'white',
     fontSize: 20,
     marginLeft: 10,
+    fontFamily: 'Avenir-Heavy',
   },
 };
 

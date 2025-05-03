@@ -18,3 +18,20 @@ export type TabParamList = {
   Search: undefined;
   Favorites: undefined;
 };
+
+export type FavoriteItemProps = {
+  item: any;
+  onRemove: (imdbID: string) => void;
+};
+
+export type SearchResultsProps = {
+  results: Movie[];
+  navigation: any;
+};
+
+export type PaginationProps = {
+  page: number;
+  hasMore: boolean;
+  onLoadMore: () => void;
+  onSearch: () => void;
+};
