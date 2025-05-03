@@ -2,6 +2,7 @@ const searchStyles = {
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#fff',
   },
   input: {
     height: 40,
@@ -9,6 +10,7 @@ const searchStyles = {
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
+    borderRadius: 5,
   },
   item: {
     padding: 10,
@@ -33,8 +35,9 @@ const searchStyles = {
     margin: 10,
   },
   buttonText: {
-    color: 'black',
-    fontSize: 16,
+    color: 'white',
+    fontSize: 20,
+    marginLeft: 10,
   },
 };
 
