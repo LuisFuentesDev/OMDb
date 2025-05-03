@@ -1,44 +1,50 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import SearchScreen from '../screens/SearchScreen';
 import DetailScreen from '../screens/DetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import {Text, TouchableOpacity} from 'react-native';
 
 export type RootStackParamList = {
-  Search: undefined;
+  Tabs: undefined;
   Details: {imdbID: string};
+};
+
+export type TabParamList = {
+  Search: undefined;
   Favorites: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<TabParamList>();
+
+const TabNavigator = () => (
+  <Tab.Navigator>
+    <Tab.Screen
+      name="Search"
+      component={SearchScreen}
+      options={{title: 'Buscar'}}
+    />
+    <Tab.Screen
+      name="Favorites"
+      component={FavoritesScreen}
+      options={{title: 'Favoritos'}}
+    />
+  </Tab.Navigator>
+);
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Search">
+      <Stack.Navigator>
         <Stack.Screen
-          name="Search"
-          component={SearchScreen}
-          options={({navigation}) => ({
-            title: 'Buscar',
-            headerRight: () => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate('Favorites')}>
-                <Text style={{marginRight: 10, color: 'blue'}}>Favoritos</Text>
-              </TouchableOpacity>
-            ),
-          })}
+          name="Tabs"
+          component={TabNavigator}
+          options={{headerShown: false}} // Oculta el header duplicado
         />
-
         <Stack.Screen name="Details" component={DetailScreen} />
-        <Stack.Screen
-          name="Favorites"
-          component={FavoritesScreen}
-          options={{title: 'Favoritos'}}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );
