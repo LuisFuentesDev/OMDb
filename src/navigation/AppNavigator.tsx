@@ -6,16 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SearchScreen from '../screens/SearchScreen';
 import DetailScreen from '../screens/DetailScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-
-export type RootStackParamList = {
-  Tabs: undefined;
-  Details: {imdbID: string};
-};
-
-export type TabParamList = {
-  Search: undefined;
-  Favorites: undefined;
-};
+import {RootStackParamList, TabParamList} from '../types/types';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -42,7 +33,7 @@ const AppNavigator = () => {
         <Stack.Screen
           name="Tabs"
           component={TabNavigator}
-          options={{headerShown: false}} // Oculta el header duplicado
+          options={{headerShown: false}}
         />
         <Stack.Screen name="Details" component={DetailScreen} />
       </Stack.Navigator>

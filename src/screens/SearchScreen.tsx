@@ -13,13 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import type {RootStackParamList} from '../navigation/AppNavigator';
 import {searchMovies} from '../api/omdbApi';
-
-type Movie = {
-  imdbID: string;
-  Title: string;
-  Year: string;
-  Poster: string;
-};
+import {Movie} from '../types/types';
 
 const SearchScreen = () => {
   const [query, setQuery] = useState('');

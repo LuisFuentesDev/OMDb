@@ -8,13 +8,11 @@ import {
   Button,
   Alert,
 } from 'react-native';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import {getMovieDetails} from '../api/omdbApi';
 import {addToFavorites, getFavorites} from '../utils/storage';
-import type {RootStackParamList} from '../navigation/AppNavigator';
 import detailsStyles from '../styles/detailsStyle';
-
-type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'Details'>;
+import {DetailsScreenRouteProp} from '../types/types';
 
 const DetailsScreen = () => {
   const route = useRoute<DetailsScreenRouteProp>();
