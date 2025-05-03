@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -9,10 +9,10 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../navigation/AppNavigator';
-import { searchMovies } from '../api/omdbApi';
+import {useNavigation} from '@react-navigation/native';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {RootStackParamList} from '../navigation/AppNavigator';
+import {searchMovies} from '../api/omdbApi';
 
 type Movie = {
   imdbID: string;
@@ -37,11 +37,10 @@ const SearchScreen = () => {
     setLoading(false);
   };
 
-  const renderItem = ({ item }: { item: Movie }) => (
+  const renderItem = ({item}: {item: Movie}) => (
     <TouchableOpacity
       style={styles.item}
-      onPress={() => navigation.navigate('Details', { imdbID: item.imdbID })}
-    >
+      onPress={() => navigation.navigate('Details', {imdbID: item.imdbID})}>
       <Text style={styles.title}>{item.Title}</Text>
       <Text>{item.Year}</Text>
     </TouchableOpacity>
@@ -57,13 +56,13 @@ const SearchScreen = () => {
       />
       <Button title="Buscar" onPress={handleSearch} />
       {loading ? (
-        <ActivityIndicator style={{ marginTop: 20 }} />
+        <ActivityIndicator style={{marginTop: 20}} />
       ) : (
         <FlatList
           data={results}
-          keyExtractor={(item) => item.imdbID}
+          keyExtractor={item => item.imdbID}
           renderItem={renderItem}
-          contentContainerStyle={{ marginTop: 20 }}
+          contentContainerStyle={{marginTop: 20}}
         />
       )}
     </View>
