@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+const {height} = Dimensions.get('window');
 
 const searchStyles = StyleSheet.create({
   container: {
@@ -43,6 +45,11 @@ const searchStyles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
     fontFamily: 'Avenir-Heavy',
+  },
+  flatListContainer: {
+    height: height * 0.64,
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 

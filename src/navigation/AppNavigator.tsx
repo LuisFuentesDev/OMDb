@@ -15,7 +15,19 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator = () => (
-  <Tab.Navigator screenOptions={{headerShown: false}}>
+  <Tab.Navigator
+    screenOptions={{
+      headerShown: false,
+      tabBarStyle: {
+        backgroundColor: '#000',
+        borderTopWidth: 0,
+      },
+      tabBarActiveTintColor: '#fff',
+      tabBarInactiveTintColor: '#aaa',
+      tabBarLabelStyle: {
+        fontFamily: 'Avenir-Heavy',
+      },
+    }}>
     <Tab.Screen
       name="Search"
       component={SearchScreen}
