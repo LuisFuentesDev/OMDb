@@ -7,15 +7,13 @@ const detailsStyles = StyleSheet.create({
     alignItems: 'center',
   },
   centered: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'Avenir-Heavy',
   },
   poster: {
     width: 200,
     height: 300,
-    marginBottom: 16,
+    marginBottom: 10,
   },
   title: {
     fontSize: 22,

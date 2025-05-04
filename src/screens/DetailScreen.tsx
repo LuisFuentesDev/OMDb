@@ -73,8 +73,10 @@ const DetailsScreen = () => {
   }
 
   return (
-    <SafeAreaView style={detailsStyles.container}>
-      <ScrollView contentContainerStyle={detailsStyles.container}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+      <ScrollView
+        contentContainerStyle={{paddingHorizontal: 16, alignItems: 'center'}}
+        showsVerticalScrollIndicator={false}>
         {movie.Poster !== 'N/A' && (
           <Image source={{uri: movie.Poster}} style={detailsStyles.poster} />
         )}
