@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FAVORITES_KEY = 'favorites';
 
-// Función para guardar una película los favoritos
+// Función para guardar una película en los favoritos
 export const saveFavorite = async (movie: any) => {
   try {
     const favorites = await getFavorites();

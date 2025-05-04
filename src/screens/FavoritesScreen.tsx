@@ -1,74 +1,74 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
-import {getFavorites} from '../utils/storage';
+import {View, FlatList, ActivityIndicator, Text} from 'react-native';
+import {getFavorites, removeFavorite} from '../utils/storage';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../navigation/AppNavigator';
+import {RootStackParamList} from '../types/types';
+import favoriteStyles from '../styles/favoriteStyles';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import FavoriteItem from '../components/FavoriteItem';
 
 const FavoritesScreen = () => {
   const [favorites, setFavorites] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+  // Cargar los favoritos
+  const loadFavorites = async () => {
+    try {
+      const data = await getFavorites();
+      setFavorites(data);
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Cargar favoritos al navegar a esta pantalla
   useEffect(() => {
-    const loadFavorites = async () => {
-      try {
-        const data = await getFavorites();
-        setFavorites(data);
-      } catch (error) {
-        console.error('Error loading favorites:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
     const unsubscribe = navigation.addListener('focus', loadFavorites);
     return unsubscribe;
   }, [navigation]);
 
-  const renderItem = ({item}: any) => (
-    <TouchableOpacity
-      style={styles.item}
-      onPress={() => navigation.navigate('Details', {imdbID: item.imdbID})}>
-      <Text style={styles.title}>{item.Title}</Text>
-      <Text>{item.Year}</Text>
-    </TouchableOpacity>
-  );
+  // Eliminar favorito
+  const handleRemove = async (imdbID: string) => {
+    await removeFavorite(imdbID);
+    loadFavorites();
+  };
+
+  const renderItem = ({item}: any) => {
+    return <FavoriteItem item={item} onRemove={handleRemove} />;
+  };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={[favoriteStyles.container, {flex: 1}]}>
       {loading ? (
         <ActivityIndicator size="large" color="#0000ff" />
       ) : favorites.length === 0 ? (
-        <Text>No tienes películas favoritas aún.</Text>
+        <View
+          style={{
+            height: 50,
+            borderBottomLeftRadius: 25,
+            borderTopLeftRadius: 25,
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 10,
+          }}>
+          <Text style={{fontSize: 20, fontFamily: 'Avenir-Heavy'}}>
+            Aún no tienes películas favoritas.
+          </Text>
+        </View>
       ) : (
         <FlatList
           data={favorites}
           keyExtractor={item => item.imdbID}
           renderItem={renderItem}
+          contentContainerStyle={{paddingBottom: 20}}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16, backgroundColor: '#fff'},
-  item: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
 
 export default FavoritesScreen;
