@@ -28,10 +28,3 @@ export type SearchResultsProps = {
   results: Movie[];
   navigation: any;
 };
-
-export type PaginationProps = {
-  page: number;
-  hasMore: boolean;
-  onLoadMore: () => void;
-  onSearch: () => void;
-};

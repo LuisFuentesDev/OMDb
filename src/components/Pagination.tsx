@@ -7,9 +7,15 @@ import {
   faAngleRight,
   faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
-import {PaginationProps} from '../types/types';
+import {PaginationProps} from '../interfaces/appInterfaces';
 
-const Pagination = ({page, hasMore, onLoadMore, onSearch}: PaginationProps) => {
+const Pagination = ({
+  page,
+  hasMore,
+  onSearch,
+  onPreviousPage,
+  onNextPage,
+}: PaginationProps) => {
   return (
     <View>
       <View
@@ -55,7 +61,7 @@ const Pagination = ({page, hasMore, onLoadMore, onSearch}: PaginationProps) => {
             page === 1 && {opacity: 0.5},
           ]}
           disabled={page === 1}
-          onPress={() => onLoadMore()}>
+          onPress={onPreviousPage}>
           <FontAwesomeIcon icon={faAngleLeft} size={15} color="white" />
           <Text style={[searchStyles.buttonText, {marginLeft: 5}]}>
             Anterior
@@ -74,7 +80,7 @@ const Pagination = ({page, hasMore, onLoadMore, onSearch}: PaginationProps) => {
             flexDirection: 'row',
           }}
           disabled={!hasMore}
-          onPress={() => onLoadMore()}>
+          onPress={onNextPage}>
           <Text style={[searchStyles.buttonText, {marginRight: 5}]}>
             Siguiente
           </Text>

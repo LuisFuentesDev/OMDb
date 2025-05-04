@@ -1,26 +1,29 @@
-const searchStyles = {
+import {StyleSheet} from 'react-native';
+
+const searchStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
   },
   input: {
     height: 40,
-    borderColor: 'gray',
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
     borderRadius: 5,
     fontFamily: 'Avenir-Heavy',
+    backgroundColor: '#fff',
   },
   item: {
     padding: 10,
     borderBottomWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#fff',
   },
   title: {
     fontSize: 18,
     fontFamily: 'Avenir-Heavy',
+    color: '#fff',
   },
   searchButton: {
     backgroundColor: '#007BFF',
@@ -41,6 +44,6 @@ const searchStyles = {
     marginLeft: 10,
     fontFamily: 'Avenir-Heavy',
   },
-};
+});
 
 export default searchStyles;

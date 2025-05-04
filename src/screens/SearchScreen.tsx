@@ -31,6 +31,17 @@ const SearchScreen = () => {
     setLoading(false);
   };
 
+  const handlePreviousPage = async () => {
+    if (page === 1 || loading) return;
+    const previousPage = page - 1;
+    setLoading(true);
+    const previousMovies = await searchMovies(query.trim(), previousPage);
+    setResults(previousMovies);
+    setPage(previousPage);
+    setHasMore(previousMovies.length === 10);
+    setLoading(false);
+  };
+
   // Función para cargar más resultados
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return;
@@ -55,9 +66,11 @@ const SearchScreen = () => {
         <Pagination
           page={page}
           hasMore={hasMore}
-          onLoadMore={loadMore}
           onSearch={handleSearch}
+          onNextPage={loadMore}
+          onPreviousPage={handlePreviousPage}
         />
+
         {loading && page === 1 ? (
           <ActivityIndicator style={{marginTop: 20}} />
         ) : (

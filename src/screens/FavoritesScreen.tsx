@@ -1,4 +1,3 @@
-// FavoritesScreen.tsx
 import React, {useEffect, useState} from 'react';
 import {View, FlatList, ActivityIndicator, Text} from 'react-native';
 import {getFavorites, removeFavorite} from '../utils/storage';
