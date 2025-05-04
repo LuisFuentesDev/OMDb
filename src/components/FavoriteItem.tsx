@@ -19,18 +19,30 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({item, onRemove}) => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
+          backgroundColor: 'black',
+          paddingRight: 8,
         },
       ]}>
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, paddingRight: 10}}>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Details', {imdbID: item.imdbID});
           }}>
-          <Text style={favoriteStyles.title}>{item.Title}</Text>
+          <Text
+            style={favoriteStyles.title}
+            numberOfLines={2} // 👈 Permite hasta 2 líneas
+            ellipsizeMode="tail" // Agrega "..." si es demasiado largo
+          >
+            {item.Title}
+          </Text>
         </TouchableOpacity>
-        <Text style={{fontFamily: 'Avenir-Heavy'}}>{item.Year}</Text>
+        <Text style={{fontFamily: 'Avenir-Heavy', color: '#fff'}}>
+          {item.Year}
+        </Text>
       </View>
-      <TouchableOpacity onPress={() => onRemove(item.imdbID)}>
+      <TouchableOpacity
+        onPress={() => onRemove(item.imdbID)}
+        style={{marginLeft: 8}}>
         <FontAwesomeIcon icon={faTrash} size={20} color="red" />
       </TouchableOpacity>
     </View>

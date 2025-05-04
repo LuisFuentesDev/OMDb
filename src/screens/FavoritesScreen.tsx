@@ -35,10 +35,9 @@ const FavoritesScreen = () => {
   // Eliminar favorito
   const handleRemove = async (imdbID: string) => {
     await removeFavorite(imdbID);
-    loadFavorites(); // Recargar la lista de favoritos
+    loadFavorites();
   };
 
-  // Renderizar cada item
   const renderItem = ({item}: any) => {
     return <FavoriteItem item={item} onRemove={handleRemove} />;
   };
@@ -50,7 +49,6 @@ const FavoritesScreen = () => {
       ) : favorites.length === 0 ? (
         <View
           style={{
-            backgroundColor: 'grey',
             height: 50,
             borderBottomLeftRadius: 25,
             borderTopLeftRadius: 25,
