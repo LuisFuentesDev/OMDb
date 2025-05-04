@@ -3,8 +3,9 @@ import {StyleSheet} from 'react-native';
 const detailsStyles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
+    flex: 1,
   },
   centered: {
     justifyContent: 'center',
@@ -21,17 +22,20 @@ const detailsStyles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
     fontFamily: 'Avenir-Heavy',
+    color: '#fff',
   },
   info: {
     fontSize: 16,
     marginBottom: 4,
     fontFamily: 'Avenir-Medium',
+    color: '#fff',
   },
   plot: {
     fontSize: 16,
     marginTop: 12,
     textAlign: 'justify',
     fontFamily: 'Avenir-Medium',
+    color: '#fff',
   },
 });
 
