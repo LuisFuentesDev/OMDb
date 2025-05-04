@@ -29,9 +29,8 @@ const FavoriteItem: React.FC<FavoriteItemProps> = ({item, onRemove}) => {
           }}>
           <Text
             style={favoriteStyles.title}
-            numberOfLines={2} // 👈 Permite hasta 2 líneas
-            ellipsizeMode="tail" // Agrega "..." si es demasiado largo
-          >
+            numberOfLines={2}
+            ellipsizeMode="tail">
             {item.Title}
           </Text>
         </TouchableOpacity>

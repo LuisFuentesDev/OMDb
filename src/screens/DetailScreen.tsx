@@ -14,8 +14,9 @@ import {addToFavorites, getFavorites} from '../utils/storage';
 import detailsStyles from '../styles/detailsStyles';
 import {DetailsScreenRouteProp} from '../types/types';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faStar} from '@fortawesome/free-solid-svg-icons';
+import {faShareNodes, faStar} from '@fortawesome/free-solid-svg-icons';
 import {removeFavorite} from '../utils/storage';
+import {Linking} from 'react-native';
 
 const DetailsScreen = () => {
   const route = useRoute<DetailsScreenRouteProp>();
@@ -38,32 +39,6 @@ const DetailsScreen = () => {
 
     fetchDetails();
   }, [imdbID]);
-
-  const handleAddToFavorites = async () => {
-    try {
-      const favorites = await getFavorites();
-      const isAlreadyFavorite = favorites.some(
-        (fav: any) => fav.imdbID === movie.imdbID,
-      );
-
-      if (isAlreadyFavorite) {
-        Alert.alert(
-          'Ya en favoritos',
-          'Esta película ya está en tu lista de favoritos.',
-        );
-        return;
-      }
-
-      await addToFavorites(movie);
-      setIsFavorite(true);
-      Alert.alert('Éxito', 'Película añadida a favoritos.');
-    } catch (error) {
-      Alert.alert(
-        'Error',
-        'Hubo un problema al agregar la película a favoritos.',
-      );
-    }
-  };
 
   if (loading) {
     return (
@@ -112,6 +87,18 @@ const DetailsScreen = () => {
     }
   };
 
+  const handleShare = () => {
+    const subject = 'Mira esta película';
+    const body = 'Te recomiendo esta película que encontré en la app.';
+    const emailUrl = `mailto:?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+
+    Linking.openURL(emailUrl).catch(err =>
+      console.error('Error al compartir', err),
+    );
+  };
+
   return (
     <View style={detailsStyles.container}>
       <ScrollView
@@ -131,29 +118,48 @@ const DetailsScreen = () => {
         <Text style={detailsStyles.info}>Actores: {movie.Actors}</Text>
         <Text style={detailsStyles.plot}>{movie.Plot}</Text>
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: 'red',
-            width: 200,
-            height: 40,
-            borderRadius: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: 20,
-            flexDirection: 'row',
-          }}
-          onPress={handleToggleFavorite}>
-          <FontAwesomeIcon
-            icon={faStar}
-            size={20}
-            color={isFavorite ? 'yellow' : 'white'}
-          />
+        <View
+          style={{flexDirection: 'row', alignItems: 'center', marginTop: 20}}>
+          <TouchableOpacity
+            style={{
+              backgroundColor: 'red',
+              width: 200,
+              height: 50,
+              borderRadius: 25,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+            }}
+            onPress={handleToggleFavorite}>
+            <FontAwesomeIcon
+              icon={faStar}
+              size={20}
+              color={isFavorite ? 'yellow' : 'white'}
+            />
+            <Text
+              style={{
+                color: '#fff',
+                marginLeft: 10,
+                fontFamily: 'Avenir-Heavy',
+              }}>
+              {isFavorite ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
+            </Text>
+          </TouchableOpacity>
 
-          <Text
-            style={{color: '#fff', marginLeft: 10, fontFamily: 'Avenir-Heavy'}}>
-            {isFavorite ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
-          </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              width: 50,
+              height: 50,
+              borderRadius: 25,
+              backgroundColor: 'red',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: 10,
+            }}
+            onPress={handleShare}>
+            <FontAwesomeIcon icon={faShareNodes} size={24} color={'white'} />
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </View>
   );
