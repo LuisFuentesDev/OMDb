@@ -1,97 +1,81 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🎬 Aplicación de Películas
 
-# Getting Started
+Aplicación creada con **React Native**, la cual consume la API de **OMDb**.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## 🚀 Primeros pasos
 
-## Step 1: Start Metro
-
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+Para comenzar a utilizar la aplicación, es necesario copiar el repositorio de forma local, para esto debes hacer lo siguiente:
 
 ```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+git clone https://github.com/LuisFuentesDev/OMDb.git
 ```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+Una vez clonado el proyecto, ábrelo en Visual Studio Code y ejecuta los siguientes comandos en la raíz del proyecto:
 
 ```sh
-# Using npm
+# Con npm
+npm install
+
+#Con yarn
+yarn install
+
+```
+Luego, instala los pods necesarios para iOS:
+
+```sh
+cd ios
+pod install
+cd ..
+
+```
+# Levantar la aplicación
+
+Una vez completada la configuración, puedes emular la aplicación en Android o iOS con los siguientes comandos:
+
+```sh
+# Con npm
 npm run android
 
-# OR using Yarn
+# Con Yarn
 yarn android
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
 ```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# Con npm
 npm run ios
 
-# OR using Yarn
+# Con Yarn
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+¡Felicidades! Ya estás ejecutando la aplicación de películas. Aquí algunas capturas de pantalla:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
-## Step 3: Modify your app
+<img width="329" alt="Captura de pantalla 2025-05-05 a la(s) 8 48 16 a m" src="https://github.com/user-attachments/assets/e20cad84-c280-4d8c-a073-60a97531f07b" />
 
-Now that you have successfully run the app, let's make changes!
+<img width="334" alt="Captura de pantalla 2025-05-05 a la(s) 8 48 52 a m" src="https://github.com/user-attachments/assets/1544a58d-94fe-432c-8f60-53274a60db4d" />
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+<img width="338" alt="Captura de pantalla 2025-05-05 a la(s) 8 49 25 a m" src="https://github.com/user-attachments/assets/f1169f3d-7e9f-4d17-a0c3-1fdf8e4884ad" />
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+<img width="331" alt="Captura de pantalla 2025-05-05 a la(s) 8 50 11 a m" src="https://github.com/user-attachments/assets/3316c2cb-94b2-46c8-b032-5a6684929a37" />
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+# 🛠️ Funcionalidades
 
-## Congratulations! :tada:
+La aplicación tiene distintas caracteristicas y funcionalidades, te las menciono a continuación:
 
-You've successfully run and modified your React Native App. :partying_face:
+- Pantalla de buscar:
+  -  Buscador en la parte superior.
+  -  Botón para iniciar la búsqueda después de ingresar el nombre de la película.
+  -  Botones de **Anterior** y **Siguiente** para navegar entre páginas de resultados.
 
-### Now what?
+- Pantalla de detalle
+  -  Visualización del póster de la película seleccionada.
+  -  Información sobre nombre, año, director, actores y descripción.
+  -  Botón dinámico para agregar o eliminar la película de favoritos.
+  -  Botón para compartir por correo electrónico.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+- Pantalla de favoritos
+  -  Listado de películas guardadas como favoritas.
+  -  Botón para eliminarlas de favoritos.
+  -  Redirección a la pantalla de detalle al presionar el nombre de la película.
+ 
 
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
