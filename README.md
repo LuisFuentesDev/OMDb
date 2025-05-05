@@ -1,6 +1,6 @@
 # 🎬 Aplicación de Películas
 
-Aplicación creada con **React Native**, la cual consume la API de **OMDb**.
+Aplicación creada con **React Native** v0.79.2, la cual consume la API de **OMDb**.
 
 ## 🚀 Primeros pasos
 
